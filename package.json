@@ -1,0 +1,57 @@
+{
+  "name": "scss-js-starter-kit",
+  "version": "0.1.0",
+  "description": "A web starter kit with scss, js and working sourcemaps.",
+  "author": "Denis Brodbeck <denis@shahaya.com>",
+  "license": "MIT",
+  "style": "dist/app.css",
+  "sass": "scss/app.scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denisbrodbeck/scss-js-starter-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/denisbrodbeck/scss-js-starter-kit/issues"
+  },
+  "scripts": {
+    "clean": "del ./dist/*",
+    "build": "npm run clean && npm run css",
+    "css": "npm run css-lint && npm run css-compile && npm run css-prefix && npm run css-minify",
+    "css-lint": "stylelint --config build/.stylelintrc --syntax scss \"scss/**/*.scss\"",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/app.scss dist/app.css",
+    "css-prefix": "postcss --config build/postcss.config.js --replace dist/app.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/app.min.css dist/app.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "clean-css-cli": "^4.1.10",
+    "del-cli": "^1.1.0",
+    "node-sass": "^4.6.1",
+    "postcss-cli": "^4.1.1",
+    "rollup": "^0.51.8",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "stylelint": "^8.2.0",
+    "stylelint-config-recommended-scss": "^2.0.0",
+    "stylelint-scss": "^2.1.0",
+    "uglify-js": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "babel": {
+    "presets": ["env"]
+  },
+  "browserslist": [
+    "Chrome >= 45",
+    "Firefox ESR",
+    "Edge >= 12",
+    "Explorer >= 10",
+    "iOS >= 9",
+    "Safari >= 9",
+    "Android >= 4.4",
+    "Opera >= 30"
+  ]
+}
