@@ -26,3 +26,6 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
+
+# this is a boilerplate - no need for yarn.lock
+/yarn.lock
