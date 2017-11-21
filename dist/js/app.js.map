@@ -1,0 +1,1 @@
+{"version":3,"file":"app.js","sources":["../../js/foo.js","../../js/index.js"],"sourcesContent":["export default 'hello world!'\n","import foo from './foo.js'\n\nexport default function () {\n  console.log(foo)\n}\n"],"names":[],"mappings":";;;;;;;;;;;AAAA,UAAe,cAAc;;ACE7B,YAAe,YAAY;EACzB,OAAO,CAAC,GAAG,CAAC,GAAG,EAAC;CACjB;;;;;;;;"}
