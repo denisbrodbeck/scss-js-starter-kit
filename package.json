@@ -2,9 +2,10 @@
   "name": "scss-js-starter-kit",
   "version": "0.1.0",
   "description": "A web starter kit with scss, js and working sourcemaps.",
-  "author": "Denis Brodbeck <denis@shahaya.com>",
+  "author": "Denis Brodbeck (https://github.com/denisbrodbeck)",
   "license": "MIT",
-  "style": "dist/app.css",
+  "main": "dist/js/app.js",
+  "style": "dist/css/app.css",
   "sass": "scss/app.scss",
   "repository": {
     "type": "git",
@@ -15,24 +16,29 @@
   },
   "scripts": {
     "clean": "del ./dist/*",
-    "build": "npm run clean && npm run css",
+    "build": "npm run clean && npm run css && npm run js",
     "css": "npm run css-lint && npm run css-compile && npm run css-prefix && npm run css-minify",
     "css-lint": "stylelint --config build/.stylelintrc --syntax scss \"scss/**/*.scss\"",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/app.scss dist/app.css",
-    "css-prefix": "postcss --config build/postcss.config.js --replace dist/app.css",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/app.min.css dist/app.css"
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/app.scss dist/css/app.css",
+    "css-prefix": "postcss --config build/postcss.config.js --replace dist/css/app.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/app.min.css dist/css/app.css",
+    "js": "npm run js-lint && npm run js-compile && npm run js-minify",
+    "js-lint": "standard \"js/**/*.js\"",
+    "js-compile": "rollup --config build/rollup.config.js --sourcemap",
+    "js-minify": "uglifyjs --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/app.js.map,includeSources,url=app.min.js.map\" --output dist/js/app.min.js dist/js/app.js",
+    "fix": "standard --fix \"js/**/*.js\" && standard --fix \"build/**/*.js\"",
+    "test": "npm run fix"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "clean-css-cli": "^4.1.10",
     "del-cli": "^1.1.0",
     "node-sass": "^4.6.1",
     "postcss-cli": "^4.1.1",
     "rollup": "^0.51.8",
-    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "standard": "^10.0.3",
     "stylelint": "^8.2.0",
     "stylelint-config-recommended-scss": "^2.0.0",
     "stylelint-scss": "^2.1.0",
@@ -41,8 +47,10 @@
   "engines": {
     "node": ">=6"
   },
-  "babel": {
-    "presets": ["env"]
+  "standard": {
+    "ignore": [
+      "/dist/"
+    ]
   },
   "browserslist": [
     "Chrome >= 45",
