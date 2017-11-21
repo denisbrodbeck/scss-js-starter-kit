@@ -1,7 +1,9 @@
 import path from 'path'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import pkg from '../package.json'
 
+const year = new Date().getFullYear()
 const external = [
   // 'jquery'
 ]
@@ -12,6 +14,12 @@ const plugins = [
 const globals = {
   // jquery: 'jQuery',
 }
+
+const banner = `/*!
+ * App v${pkg.version} (${pkg.homepage})
+ * Copyright ${year} ${pkg.author}
+ * Licensed under MIT (https://github.com/denisbrodbeck/scss-js-starter-kit/LICENSE)
+ */`
 
 export default [
   {
@@ -24,6 +32,7 @@ export default [
     name: 'app',
     external,
     globals,
-    plugins
+    plugins,
+    banner
   }
 ]
