@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A web starter kit with scss, js and working sourcemaps.",
   "author": "Denis Brodbeck (https://github.com/denisbrodbeck)",
+  "homepage": "https://github.com/denisbrodbeck/scss-js-starter-kit",
   "license": "MIT",
   "main": "dist/js/app.js",
   "style": "dist/css/app.css",
